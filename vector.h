@@ -1,6 +1,3 @@
-//
-// Created by MD on 2018-05-30.
-//
 
 #ifndef INC_4_UZDUOTIS_VECTOR_H
 #define INC_4_UZDUOTIS_VECTOR_H
