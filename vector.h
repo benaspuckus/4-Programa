@@ -160,21 +160,28 @@ template <class T> int vector<T>::size()
 }
 template <class T> void vector<T>::resize(int i)
 {
+    int k=0;
     if(i<vSize)
     {
-        for(int k = vSize; k>i;k--)
+        if(k==0)
         {
-            delete &array[k];
-            vSize--;
+            for (int k = vSize; k > i; k--) {
+                delete &array[k];
+                //vSize--;
+            }
+            vSize = i;
+            k++;
         }
-        vSize = i;
     }
     if(i>=vSize)
+    {   if(k==0)
     {
-        for(int k = 0;k < i; k++)
-        {
-            push_back(0);
-        }
+            for (int k = 0; k < i; k++)
+            {
+                push_back(0);
+            }
+            k++;
+    }
     }
 }
 template <class T> int vector<T>::capacity()
