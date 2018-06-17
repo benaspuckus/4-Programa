@@ -1,36 +1,46 @@
 #include <iostream>
 #include "vector.h"
+using std::cout;
 
 int main() {
-    vector <double> v;
+    vector <int> v;
 
     int tmp;
-for(int i=0;i<3;i++)
+for(int i=0;i<5;i++)
 {
-    std::cin>>tmp;
-    v.push_back(tmp);
+
+    v.push_back(i);
 }
 v+=15;
-    std::cout << "ivedei " << v.size()<<std::endl;
+    std::cout << v.size()<<" - SIZE"<<std::endl;
     for(int i=0; i<v.size();i++)
     {
         std::cout<<v[i]<<"  ";
     }
-    std::cout<<std::endl;
-    vector <double > ve(v);
-    vector <double > vec;
-    std::cout<<std::endl;
-    vec=v;
-    for(int i=0; i<ve.size();i++)
-    {
-        std::cout<<ve[i]<<"  ";
-    }
-    std::cout<<std::endl;
-    vec.pop_back();
+    std::cout <<" - PUSH BACK, OPERATOR +="<<std::endl;
+    cout<<v.capacity()<<" - CAPACITY"<<std::endl;
+    v.insert(v.begin()+3, 20);
 
-    for(int i=0; i<vec.size();i++)
+
+    for(int i=0; i<v.size();i++)
     {
-        std::cout<<vec[i]<<"  ";
+        std::cout<<v[i]<<"  ";
     }
-    return 0;
+    cout<<" - INSERT "<<std::endl;
+    /*v.emplace(v.begin()+7,25);
+    for(int i=0; i<v.size();i++)
+    {
+        std::cout<<v[i]<<"  ";
+    }*/
+    v.resize(3);
+    for(int i=0; i<v.size();i++)
+    {
+        std::cout<<v[i]<<"  ";
+    }
+    cout<<" - RESIZE "<<std::endl;
+
+
+    v.clear();
+    cout<<" - CLEAR "<<std::endl;
+
 }
