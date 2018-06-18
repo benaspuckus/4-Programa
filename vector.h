@@ -22,6 +22,7 @@ public:
     vector(int);
     vector(const vector&);
     ~vector();
+    void shrink_to_fit();
     vector& operator+=(T);
     int capacity();
     void push_back(T);
@@ -69,13 +70,21 @@ template <class T>
 template <class ... Args>
 typename vector<T>::iterator vector<T>::emplace(const_iterator it, Args && ... args)
 {
-    /*if (vSize+1>maxSize)
+    T * tmp;
+    if (vSize+1>maxSize)
         alloc_new();
-    iterator ite = &argument[it - argument];
-    argument[vSize - *ite] = std::move( T( std::forward<Args>(args)...) );
-    *ite =  T( std::forward<T>(args)...);
-    ++vSize;
-    return ite;*/
+    int index = it - begin();
+    T laikinas = array[index];
+    T laikinas2;
+    array[index] = T( std::forward<Args>(args)...);;
+    for(auto k = index; k!=end()-begin()+2; k++ )
+    {
+        laikinas2 = array[k+1];
+        array[k+1] = laikinas;
+        laikinas = laikinas2;
+    }
+    vSize++;
+    return array;
 }
 template <class T> void vector<T>::alloc_new()
 {
@@ -115,6 +124,14 @@ template <class T> void vector<T>::clear()
     maxSize = 0;
     array = new T[maxSize];
     vSize = 0;
+}
+template <class T> void vector<T>::shrink_to_fit()
+{
+  if(maxSize>vSize)
+  {
+      maxSize = vSize;
+  }
+  alloc_new();
 }
 template <class T> void vector<T>::insert(vector<T>::const_iterator it, T i)
 {

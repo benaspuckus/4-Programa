@@ -27,11 +27,13 @@ v+=15;
         std::cout<<v[i]<<"  ";
     }
     cout<<" - INSERT "<<std::endl;
-    /*v.emplace(v.begin()+7,25);
+    v.emplace(v.begin()+2,25);
     for(int i=0; i<v.size();i++)
     {
         std::cout<<v[i]<<"  ";
-    }*/
+    }
+    cout<<" - EMPLACE "<<std::endl;
+
     v.resize(3);
     std::cout << v.size()<<" - SIZE"<<std::endl;
 
@@ -49,7 +51,6 @@ v+=15;
         std::cout<<v[i]<<"  ";
     }
     cout<<" - PUSH BACK"<<std::endl;
-
     v.clear();
     cout<<" - CLEAR "<<std::endl;
 
